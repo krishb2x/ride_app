@@ -1,0 +1,8 @@
+{
+  "name": "Copy of RideAdda - The Rider Community",
+  "description": "A real-time rider community app for discovering nearby rides, live group tracking, push-to-talk communication, and automated ride statistics.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
