@@ -14,12 +14,17 @@ export interface Ride {
   center_lat: number;
   center_lng: number;
   radius_km: number;
-  status: 'active' | 'completed';
+  status: 'upcoming' | 'active' | 'completed';
+  visibility: 'public' | 'private';
   start_time: number;
   end_time?: number;
   rider_count: number;
+  pending_requests?: string[]; // user_ids
+  joined_rider_ids: string[];
   
   // WhatsApp Style Metadata
+  // Added host_name to support display names for ride admins in discovery and alerts
+  host_name?: string;
   description?: string;
   date?: string;
   meeting_point?: string;
@@ -32,6 +37,7 @@ export interface Ride {
   gears_mandatory?: boolean;
   admin_contact?: string;
   total_distance?: string;
+  static_map_url?: string;
 }
 
 export interface RideLocation {
@@ -81,4 +87,4 @@ export interface FeedEvent {
   timestamp: number;
 }
 
-export type AppView = 'auth' | 'feed' | 'participate' | 'map' | 'profile' | 'help' | 'live' | 'stats' | 'create_ride';
+export type AppView = 'auth' | 'pulse' | 'quests' | 'explore' | 'profile' | 'help' | 'live' | 'stats' | 'create_ride';
