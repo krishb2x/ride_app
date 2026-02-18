@@ -16,6 +16,7 @@ interface RideDiscoveryProps {
 }
 
 const RideDiscovery: React.FC<RideDiscoveryProps> = ({ onJoinRide, onCreateRide, userLocation }) => {
+  const [showCreateConfirmation, setShowCreateConfirmation] = useState(false);
   const [rides] = useState<ExtendedRide[]>([
     {
       ride_id: '1',
@@ -95,12 +96,39 @@ const RideDiscovery: React.FC<RideDiscoveryProps> = ({ onJoinRide, onCreateRide,
     })).sort((a, b) => a.distanceToUser - b.distanceToUser);
   }, [rides, userLocation]);
 
+  const handleCreateConfirm = () => {
+    setShowCreateConfirmation(false);
+    onCreateRide();
+  };
+
   return (
     <div className="absolute bottom-0 left-0 right-0 z-[1000] p-4 pointer-events-none">
+      {/* Confirmation Modal */}
+      {showCreateConfirmation && (
+        <div className="fixed inset-0 z-[2000] bg-zinc-950/90 backdrop-blur-sm flex items-center justify-center p-6 pointer-events-auto animate-in fade-in duration-200">
+          <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[2.5rem] shadow-2xl max-w-sm w-full text-center">
+            <div className="w-20 h-20 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-black text-white mb-6 tracking-tight leading-tight">Are you sure you want to start a new ride?</h3>
+            <div className="flex flex-col gap-3">
+              <Button size="full" onClick={handleCreateConfirm} className="shadow-orange-500/30">
+                Yes, Start Ride
+              </Button>
+              <Button variant="secondary" size="full" onClick={() => setShowCreateConfirmation(false)}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-md mx-auto space-y-4">
         {/* Creation CTA */}
         <div className="pointer-events-auto">
-          <Button size="full" onClick={onCreateRide} className="rounded-2xl border-b-4 border-orange-700 active:border-b-0 active:translate-y-1 transition-all">
+          <Button size="full" onClick={() => setShowCreateConfirmation(true)} className="rounded-2xl border-b-4 border-orange-700 active:border-b-0 active:translate-y-1 transition-all">
             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
             </svg>

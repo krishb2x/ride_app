@@ -1,12 +1,12 @@
-
 import { GoogleGenAI } from "@google/genai";
-import { FeedEvent, FeedEventType } from "../types";
+import { FeedEventType } from "../types";
 
 export class RideAddaAI {
   private ai: GoogleGenAI;
 
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+    // Initializing with process.env.API_KEY as a direct named parameter per guidelines
+    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
 
   async generateFeedMessage(type: FeedEventType, context: string): Promise<string> {
@@ -18,6 +18,7 @@ export class RideAddaAI {
         Context: ${context}
         Keep it under 10 words.`,
       });
+      // Accessing text property directly (not as a method)
       return response.text || "New activity in RideAdda!";
     } catch (err) {
       return "Something big just happened nearby!";
@@ -31,6 +32,7 @@ export class RideAddaAI {
         contents: `Comment on these ride stats for a biker: ${distance}km at ${avgSpeed}km/h. 
         Give a cool, encouraging one-liner in Indian context.`,
       });
+      // Accessing text property directly (not as a method)
       return response.text || "Solid ride, brother!";
     } catch (err) {
       return "Legendary effort today!";

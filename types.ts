@@ -18,10 +18,23 @@ export interface Ride {
   start_time: number;
   end_time?: number;
   rider_count: number;
+  
+  // WhatsApp Style Metadata
+  description?: string;
+  date?: string;
+  meeting_point?: string;
+  destination?: string;
+  breakfast_point?: string;
+  assembling_time?: string;
+  briefing_time?: string;
+  departure_time?: string;
+  reg_fee?: number;
+  gears_mandatory?: boolean;
+  admin_contact?: string;
+  total_distance?: string;
 }
 
 export interface RideLocation {
-  user_id: string;
   lat: number;
   lng: number;
   timestamp: number;
@@ -35,6 +48,21 @@ export interface RideStats {
   moving_time_minutes: number;
   avg_speed: number;
   max_speed: number;
+}
+
+export interface Challenge {
+  id: string;
+  title: string;
+  imageUrl: string;
+  participants: number;
+  daysLeft: number;
+}
+
+export interface Vehicle {
+  id: string;
+  model: string;
+  year: string;
+  nickname?: string;
 }
 
 export enum FeedEventType {
@@ -53,9 +81,4 @@ export interface FeedEvent {
   timestamp: number;
 }
 
-export interface NearbyRider {
-  name: string;
-  distance: number;
-  lat: number;
-  lng: number;
-}
+export type AppView = 'auth' | 'feed' | 'participate' | 'map' | 'profile' | 'help' | 'live' | 'stats' | 'create_ride';

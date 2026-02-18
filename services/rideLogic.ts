@@ -1,3 +1,4 @@
+import { RideStats, RideLocation } from "../types";
 
 export const haversineDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
   const R = 6371; // Earth radius in km
@@ -11,7 +12,8 @@ export const haversineDistance = (lat1: number, lon1: number, lat2: number, lon2
   return R * c;
 };
 
-export const calculateMovingTime = (locations: { timestamp: number }[]): number => {
+// Typed locations parameter with RideLocation interface
+export const calculateMovingTime = (locations: RideLocation[]): number => {
   if (locations.length < 2) return 0;
   // Simple heuristic: distance/time > threshold
   // In a real app we'd filter out idle periods > 60s
@@ -20,7 +22,8 @@ export const calculateMovingTime = (locations: { timestamp: number }[]): number 
   return Math.max(0, (end - start) / 60000);
 };
 
-export const generateStats = (rideId: string, userId: string, locations: { lat: number, lng: number, timestamp: number }[]): any => {
+// Typed generateStats function using RideLocation and returning RideStats
+export const generateStats = (rideId: string, userId: string, locations: RideLocation[]): RideStats => {
   let totalDistance = 0;
   let maxSpeed = 0;
   
