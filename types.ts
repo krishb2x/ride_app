@@ -26,6 +26,7 @@ export interface Ride {
   // Added host_name to support display names for ride admins in discovery and alerts
   host_name?: string;
   description?: string;
+  itinerary?: string;
   date?: string;
   meeting_point?: string;
   destination?: string;

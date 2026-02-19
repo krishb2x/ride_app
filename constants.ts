@@ -1,12 +1,12 @@
 
 export const COLORS = {
-  primary: '#f97316', // Orange 500
-  secondary: '#ea580c', // Orange 600
-  bg: '#09090b', // Zinc 950
-  surface: '#18181b', // Zinc 900
-  border: '#27272a', // Zinc 800
+  primary: '#3b82f6', // Deep Space Blue
+  accent: '#ff6600',  // Neon Orange
+  bg: '#000000',      // True Black
+  surface: '#0a0a0a', // Midnight Grey
+  border: '#171717',  // Technical Slate
   text: '#ffffff',
-  textSecondary: '#a1a1aa', // Zinc 400
+  textSecondary: '#94a3b8', // Slate 400
 };
 
 export const MOCK_NAMES = [

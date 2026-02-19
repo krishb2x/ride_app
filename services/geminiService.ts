@@ -1,11 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 import { FeedEventType } from "../types";
 
-export class RideAddaAI {
+export class MotoOrbitAI {
   private ai: GoogleGenAI;
 
   constructor() {
-    // Initializing with process.env.API_KEY as a direct named parameter per guidelines
     this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
 
@@ -13,15 +12,15 @@ export class RideAddaAI {
     try {
       const response = await this.ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: `Create a short, exciting one-line notification (Indian English slang like 'Ride on!', 'Bawal scene!', 'Chalo chalo!') for a rider community feed. 
+        contents: `Create a short, exciting one-line notification for a high-tech rider community feed called MotoOrbit. 
         Event Type: ${type}
         Context: ${context}
+        Keywords: Connectivity, Orbit, Precision.
         Keep it under 10 words.`,
       });
-      // Accessing text property directly (not as a method)
-      return response.text || "New activity in RideAdda!";
+      return response.text || "New activity in MotoOrbit!";
     } catch (err) {
-      return "Something big just happened nearby!";
+      return "Something big just happened in your Orbit!";
     }
   }
 
@@ -29,15 +28,14 @@ export class RideAddaAI {
     try {
       const response = await this.ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: `Comment on these ride stats for a biker: ${distance}km at ${avgSpeed}km/h. 
-        Give a cool, encouraging one-liner in Indian context.`,
+        contents: `Comment on these MotoOrbit ride stats: ${distance}km at ${avgSpeed}km/h. 
+        Give a cool, precise, and tech-focused one-liner.`,
       });
-      // Accessing text property directly (not as a method)
-      return response.text || "Solid ride, brother!";
+      return response.text || "Orbit established. Solid data!";
     } catch (err) {
-      return "Legendary effort today!";
+      return "Mission successful. Velocity archived!";
     }
   }
 }
 
-export const aiService = new RideAddaAI();
+export const aiService = new MotoOrbitAI();
